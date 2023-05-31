@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Patrones</title>
+</head>
+<body>
+    <h1>Lista de Patrones</h1>
+
+    <table>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Id</th>
+            <th>Padre</th>
+            <th>Uso</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="patron : ${patrones}">
+            <td th:text="${patron.codigo}"></td>
+            <td th:text="${patron.nombre}"></td>
+            <td th:text="${patron.descripcion}"></td>
+            <td th:text="${patron.id}"></td>
+            <td th:text="${patron.padre}"></td>
+            <td th:text="${patron.uso}"></td>
+            <td>
+                <a th:href="@{/proyecto/{codigo}(codigo=${patron.codigo})}">Ver</a>
+                <a th:href="@{/proyecto/{codigo}/editar(codigo=${patron.codigo})}">Editar</a>
+                <form th:action="@{/proyecto/{codigo}/eliminar(codigo=${patron.codigo})}" method="post">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <a href="/proyecto/crear">Crear Patrón</a>
+</body>
+</html>
